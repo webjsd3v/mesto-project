@@ -1,0 +1,9 @@
+.header__logo{
+  background: url("../../../images/header/logo.svg");
+}
+
+@media screen and (max-width: 890px){
+  .header__logo{
+    background: url("../../../images/header/logo-smal.svg");
+  }
+}

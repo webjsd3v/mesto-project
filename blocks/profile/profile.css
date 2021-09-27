@@ -1,0 +1,11 @@
+.profile{
+  display: grid;
+  align-items: center;
+  grid-template-areas:"avatar info btn";
+}
+
+@media screen and (max-width: 1024px){
+  .profile {
+    grid-template-areas:"avatar""info""btn";
+  }
+}
