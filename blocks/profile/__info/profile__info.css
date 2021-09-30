@@ -12,8 +12,9 @@
   .profile__info {
     margin: 22px auto 0;
     justify-content: center;
+    min-width: 282px;
     gap:14px 10px;
     grid-template-areas:"title edit"
-                      "subtitle edit";
+                      "subtitle subtitle";
   }
 }

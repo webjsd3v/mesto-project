@@ -4,9 +4,9 @@
   max-height: 19px;
   background: url("../../../images/elements/button/like.svg") no-repeat;
   cursor: pointer;
-  margin-top: 5px;
+  margin: 5px 5px 0 0;
 }
 
 .element__button-like:hover {
-  opacity: 0.6;
+  opacity: 0.5;
 }

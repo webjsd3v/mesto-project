@@ -17,9 +17,9 @@
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
-                    <button class="button profile__edit-button"></button>
+                    <button class="button profile__edit-button" type="button"></button>
                 </div>
-                <button class="button profile__add-button"></button>
+                <button class="button profile__add-button" type="button"></button>
             </section>
             <section class="elements">
                 <article class="element">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="element__footer">
                         <h2 class="element__title">Карачаевск</h2>
-                        <button class="button element__button-like"></button>
+                        <button class="button element__button-like" type="button"></button>
                     </div>
                 </article>
               <article class="element">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="element__footer">
                   <h2 class="element__title">Гора Эльбрус</h2>
-                  <button class="button element__button-like"></button>
+                  <button class="button element__button-like" type="button"></button>
                 </div>
               </article>
               <article class="element">
@@ -46,34 +46,28 @@
                 </div>
                 <div class="element__footer">
                   <h2 class="element__title">Домбай</h2>
-                  <button class="button element__button-like"></button>
+                  <button class="button element__button-like" type="button"></button>
                 </div>
               </article>
               <article class="element">
-                <div class="element__header">
-                  <img class="img element__image" src="./images/elements/elbrus.jpg" alt="Гора Эльбрус" >
-                </div>
+                <img class="img element__image" src="./images/elements/elbrus.jpg" alt="Гора Эльбрус" >
                 <div class="element__footer">
                   <h2 class="element__title">Гора Эльбрус</h2>
-                  <button class="button element__button-like"></button>
+                  <button class="button element__button-like" type="button"></button>
                 </div>
               </article>
               <article class="element">
-                <div class="element__header">
-                  <img class="img element__image" src="./images/elements/dombai.jpg" alt="Домбай" >
-                </div>
+                <img class="img element__image" src="./images/elements/dombai.jpg" alt="Домбай" >
                 <div class="element__footer">
                   <h2 class="element__title">Домбай</h2>
-                  <button class="button element__button-like"></button>
+                  <button class="button element__button-like" type="button"></button>
                 </div>
               </article>
               <article class="element">
-                <div class="element__header">
-                  <img class="img element__image" src="./images/elements/karachevsk.jpg" alt="Карачевск" >
-                </div>
+                <img class="img element__image" src="./images/elements/karachevsk.jpg" alt="Карачевск" >
                 <div class="element__footer">
                   <h2 class="element__title">Карачаево-Чаркевсск</h2>
-                  <button class="button element__button-like"></button>
+                  <button class="button element__button-like" type="button"></button>
                 </div>
               </article>
 
@@ -84,19 +78,18 @@
         </footer>
     </div>
 
-    <!-- Чтобы скрыть popup удалите класс popup_opened -->
-    <div class="popup popup_opened">
-      <div class="overlay"></div>
-      <div class="popup__container popup__container-edit-profile">
-        <button class="button popup__close-btn"></button>
+    <!-- Чтобы открыть popup добавьте класс popup_opened -->
+    <div class="popup overlay">
+      <div class="popup__container">
+        <button class="button popup__close-btn" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form popup__form">
+        <form class="form popup__form" name="formEdit">
           <fieldset class="popup__fieldset">
             <label class="form__field">
-              <input class="popup__input" type="text" placeholder="Жак-Ив Кусто">
+              <input class="popup__input" type="text" placeholder="Жак-Ив Кусто" name="inputTitle" value="Жак-Ив Кусто">
             </label>
             <label class="form__field">
-              <input class="popup__input" type="text" placeholder="Исследователь океана">
+              <input class="popup__input" type="text" placeholder="Исследователь океана" name="inputSubtitle" value="Исследователь океана">
             </label>
           </fieldset>
           <button class="button popup__button" type="submit">Сохранить</button>

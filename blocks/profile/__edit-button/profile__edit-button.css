@@ -10,3 +10,13 @@
 .profile__edit-button:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 768px) {
+  .profile__edit-button {
+    background: url("../../../images/profile/button/edit-small.svg") no-repeat center;
+    min-width: 18px;
+    max-width: 18px;
+    min-height: 18px;
+    margin-right: 19px;
+  }
+}
