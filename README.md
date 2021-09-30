@@ -13,4 +13,4 @@
 
 ### Посмотреть сайт можно по ссылке ↓
 
-[«Путешествие по России»](https://webjsd3v.github.io/mesto-project/)
+[«Место»](https://webjsd3v.github.io/mesto-project/)
