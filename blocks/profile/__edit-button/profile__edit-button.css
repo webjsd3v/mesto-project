@@ -5,6 +5,7 @@
   background: url("../../../images/profile/button/edit.svg") no-repeat center;
   cursor: pointer;
   align-self: end;
+  margin-bottom: 5px;
 }
 
 .profile__edit-button:hover {
@@ -18,5 +19,6 @@
     max-width: 18px;
     min-height: 18px;
     margin-right: 19px;
+    margin-bottom: 7px;
   }
 }

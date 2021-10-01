@@ -13,8 +13,8 @@
     margin: 22px auto 0;
     justify-content: center;
     min-width: 282px;
-    gap:14px 10px;
+    gap:8px 10px;
     grid-template-areas:"title edit"
-                      "subtitle subtitle";
+                      "subtitle edit";
   }
 }
