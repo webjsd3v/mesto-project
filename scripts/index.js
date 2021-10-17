@@ -26,7 +26,7 @@ const initialCards = [
 ];
 
 const profile = document.querySelector(".profile");
-const profileTitle = profile.querySelector(".profile__title");
+const profileName = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
 const popUpEditProfile =  document.querySelector(".popup_type_edit-profile");
 const popUpOpenEdit = profile.querySelector(".profile__edit-button");
@@ -47,15 +47,15 @@ const popUpImage = popUpImageElement.querySelector(".popup__figure-image");
 const popUpImageCaption = popUpImageElement.querySelector(".popup__caption");
 const popUpImageClose = popUpImageElement.querySelector(".popup__close-btn");
 
-const previewImage = (name, link) => {
+const openImage = (name, link) => {
   popUpImage.src = link;
   popUpImage.alt = `Фотография ${name}`;
   popUpImageCaption.textContent = name;
   openPopUp(popUpImageElement);
 }
 
-function openPopUp(arg){
-  arg.classList.add("popup_opened");
+function openPopUp(popup){
+  popup.classList.add("popup_opened");
 }
 
 function closePopUp(arg){
@@ -63,7 +63,7 @@ function closePopUp(arg){
 }
 
 popUpOpenEdit.addEventListener("click", () => {
-  nameInput.value = profileTitle.textContent;
+  nameInput.value = profileName.textContent;
   jobInput.value = profileSubtitle.textContent;
   openPopUp(popUpEditProfile);
 })
@@ -74,7 +74,7 @@ popUpCloseEdit.addEventListener("click", () => {
 
 formEdit.addEventListener("submit",(evt)=>{
   evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
+  profileName.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
   closePopUp(popUpEditProfile);
 })
@@ -89,8 +89,8 @@ function addElement(name, link){
   imageElement.alt = `Фотография ${name}`;
 
   const buttonTrash = elementItem.querySelector(".element__button-trash");
-  buttonTrash.addEventListener("click",(evt) => {
-    evt.target.closest("article.element").remove();
+  buttonTrash.addEventListener("click",() => {
+    elementItem.remove()
   })
 
   const buttonLike = elementItem.querySelector(".element__button-like");
@@ -98,14 +98,14 @@ function addElement(name, link){
     buttonLike.classList.toggle("element__button-like_active");
   })
 
-  imageElement.addEventListener("click", () => previewImage(name,link));
+  imageElement.addEventListener("click", () => openImage(name,link));
 
-  popUpImageClose.addEventListener("click", () => {
-    closePopUp(popUpImageElement)
-  })
-
-  return elementItem;
+   return elementItem;
 }
+
+popUpImageClose.addEventListener("click", () => {
+  closePopUp(popUpImageElement)
+})
 
 formAdd.addEventListener("submit",(evt)=>{
   evt.preventDefault();
@@ -115,6 +115,8 @@ formAdd.addEventListener("submit",(evt)=>{
 
 
 popUpOpenAdd.addEventListener("click",() => {
+  nameInputAdd.value = nameInputAdd.textContent;
+  urlInputAdd.value = urlInputAdd.textContent;
   openPopUp(popUpAddElement);
 })
 
@@ -122,10 +124,10 @@ popUpCloseAdd.addEventListener("click", () => {
   closePopUp(popUpAddElement)
 })
 
-function render(){
+function renderCards(){
   initialCards.forEach((arg)=>{
     elements.append(addElement(arg.name, arg.link))
   })
 }
 
-render()
+renderCards()
