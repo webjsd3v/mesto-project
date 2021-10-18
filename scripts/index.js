@@ -104,24 +104,24 @@ function addElement(name, link){
 }
 
 popUpImageClose.addEventListener("click", () => {
-  closePopUp(popUpImageElement)
+  closePopUp(popUpImageElement);
 })
 
 formAdd.addEventListener("submit",(evt)=>{
   evt.preventDefault();
   elements.prepend(addElement(nameInputAdd.value, urlInputAdd.value))
+  formAdd.reset();
   closePopUp(popUpAddElement);
 })
 
 
 popUpOpenAdd.addEventListener("click",() => {
-  nameInputAdd.value = nameInputAdd.textContent;
-  urlInputAdd.value = urlInputAdd.textContent;
   openPopUp(popUpAddElement);
 })
 
 popUpCloseAdd.addEventListener("click", () => {
-  closePopUp(popUpAddElement)
+  formAdd.reset();
+  closePopUp(popUpAddElement);
 })
 
 function renderCards(){
