@@ -1,3 +1,12 @@
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -25,6 +34,8 @@ const initialCards = [
   }
 ];
 
+const overlayList = Array.from(document.querySelectorAll('.popup'));
+
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
@@ -47,87 +58,29 @@ const popUpImage = popUpImageElement.querySelector(".popup__figure-image");
 const popUpImageCaption = popUpImageElement.querySelector(".popup__caption");
 const popUpImageClose = popUpImageElement.querySelector(".popup__close-btn");
 
-const openImage = (name, link) => {
-  popUpImage.src = link;
-  popUpImage.alt = `Фотография ${name}`;
-  popUpImageCaption.textContent = name;
-  openPopUp(popUpImageElement);
+export {
+  profile,
+  profileName,
+  profileSubtitle,
+  popUpEditProfile,
+  popUpOpenEdit,
+  popUpCloseEdit,
+  formEdit,
+  nameInput,
+  jobInput,
+  elements,
+  templateElement,
+  popUpAddElement,
+  popUpOpenAdd,
+  popUpCloseAdd,
+  formAdd,
+  nameInputAdd,
+  urlInputAdd,
+  popUpImageElement,
+  popUpImage,
+  popUpImageCaption,
+  popUpImageClose,
+  validationConfig,
+  initialCards,
+  overlayList
 }
-
-function openPopUp(popup){
-  popup.classList.add("popup_opened");
-}
-
-function closePopUp(arg){
-  arg.classList.remove("popup_opened");
-}
-
-popUpOpenEdit.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileSubtitle.textContent;
-  openPopUp(popUpEditProfile);
-})
-
-popUpCloseEdit.addEventListener("click", () => {
-  closePopUp(popUpEditProfile);
-})
-
-formEdit.addEventListener("submit",(evt)=>{
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  closePopUp(popUpEditProfile);
-})
-
-function addElement(name, link){
-  const elementItem = templateElement.querySelector(".element").cloneNode(true);
-  const imageElement = elementItem.querySelector(".element__image");
-  const titleElement = elementItem.querySelector(".element__title");
-
-  titleElement.textContent = name;
-  imageElement.src = link;
-  imageElement.alt = `Фотография ${name}`;
-
-  const buttonTrash = elementItem.querySelector(".element__button-trash");
-  buttonTrash.addEventListener("click",() => {
-    elementItem.remove()
-  })
-
-  const buttonLike = elementItem.querySelector(".element__button-like");
-  buttonLike.addEventListener("click", () => {
-    buttonLike.classList.toggle("element__button-like_active");
-  })
-
-  imageElement.addEventListener("click", () => openImage(name,link));
-
-   return elementItem;
-}
-
-popUpImageClose.addEventListener("click", () => {
-  closePopUp(popUpImageElement);
-})
-
-formAdd.addEventListener("submit",(evt)=>{
-  evt.preventDefault();
-  elements.prepend(addElement(nameInputAdd.value, urlInputAdd.value))
-  formAdd.reset();
-  closePopUp(popUpAddElement);
-})
-
-
-popUpOpenAdd.addEventListener("click",() => {
-  openPopUp(popUpAddElement);
-})
-
-popUpCloseAdd.addEventListener("click", () => {
-  formAdd.reset();
-  closePopUp(popUpAddElement);
-})
-
-function renderCards(){
-  initialCards.forEach((arg)=>{
-    elements.append(addElement(arg.name, arg.link))
-  })
-}
-
-renderCards()
