@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
     <div class="page__container">
@@ -13,7 +12,7 @@
         </header>
         <main class="content page__content">
             <section class="profile">
-                <img class="img profile__avatar" src="./images/profile/avatar.jpg" alt="Аватарка Профиля">
+                <img class="img profile__avatar" src="<%=require('./images/profile/avatar.jpg')%>" alt="Аватарка Профиля">
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <p class="profile__subtitle">Исследователь океана</p>
@@ -28,18 +27,19 @@
         </footer>
     </div>
 
-    <!-- Чтобы открыть popup добавьте класс popup_opened -->
     <div class="popup popup_type_edit-profile">
       <div class="popup__container popup__container-profile">
         <button class="button popup__close-btn" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form popup__form" name="formEdit">
+        <form class="form popup__form" name="formEdit" novalidate>
           <fieldset class="popup__fieldset">
             <label class="form__field">
-              <input class="popup__input" type="text" placeholder="Жак-Ив Кусто" name="inputTitle">
+              <input class="popup__input" type="text" placeholder="Жак-Ив Кусто" name="inputTitle" id="inputTitle" minlength="2" maxlength="40" required>
+              <span class="popup__error inputTitle-error"></span>
             </label>
-            <label class="form__field">
-              <input class="popup__input" type="text" placeholder="Исследователь океана" name="inputSubtitle">
+            <label class  ="form__field">
+              <input class="popup__input" type="text" placeholder="Исследователь океана" name="inputSubtitle" id="inputSubtitle"  minlength="2" maxlength="200" required>
+              <span class="popup__error inputSubtitle-error"></span>
             </label>
           </fieldset>
           <button class="button popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
@@ -51,13 +51,15 @@
       <div class="popup__container popup__container-add">
         <button class="button popup__close-btn" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="form popup__form" name="formAdd">
+        <form class="form popup__form" name="formAdd" novalidate>
           <fieldset class="popup__fieldset">
             <label class="form__field">
-              <input class="popup__input" type="text" placeholder="Название" name="inputTitleAdd">
+              <input class="popup__input" type="text" placeholder="Название" name="inputTitleAdd" id="inputTitleAdd" minlength="2" maxlength="30" required>
+              <span class="popup__error inputTitleAdd-error"></span>
             </label>
             <label class="form__field">
-              <input class="popup__input" type="url" placeholder="Ссылка на картинку" name="inputUrlAdd">
+              <input class="popup__input" type="url" placeholder="Ссылка на картинку" name="inputUrlAdd" id="inputUrlAdd" required>
+              <span class="popup__error inputUrlAdd-error"></span>
             </label>
           </fieldset>
           <button class="button popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
@@ -75,7 +77,6 @@
       </div>
     </div>
 
-
     <template class="element-template">
       <article class="element">
         <div class="element__header">
@@ -88,6 +89,5 @@
         </div>
       </article>
     </template>
-  <script src="./scripts/index.js"></script>
 </body>
 </html>
