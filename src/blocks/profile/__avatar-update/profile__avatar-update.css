@@ -1,0 +1,17 @@
+.profile__avatar-update{
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 120px;
+  border:0;
+  border-radius: 48%;
+  background: url('../../../images/profile/button/edit-big.svg') no-repeat center rgba(0,0,0, .8);
+  cursor: pointer;
+  opacity: 0;
+}
+.profile__avatar-update:hover{
+  opacity: 1;
+}
+

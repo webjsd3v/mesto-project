@@ -58,6 +58,20 @@ const popUpImage = popUpImageElement.querySelector(".popup__figure-image");
 const popUpImageCaption = popUpImageElement.querySelector(".popup__caption");
 const popUpImageClose = popUpImageElement.querySelector(".popup__close-btn");
 
+
+const popUpOpenAvatarUpdate = profile.querySelector(".profile__avatar-update");
+const popUpAvatarUpdate = document.querySelector(".popup_type_update-avatar");
+const popUpCloseAvatarUpdate = popUpAvatarUpdate.querySelector(".popup__close-btn");
+const formAvatarUpdate = popUpAvatarUpdate.querySelector('.popup__form');
+
+const popUpConfirm = document.querySelector('.popup_type_confirm');
+const popUpCloseConfirm = popUpConfirm.querySelector('.popup__close-btn');
+const formConfirm = popUpConfirm.querySelector('.popup__button');
+
+
+
+
+
 export {
   profile,
   profileName,
@@ -82,5 +96,12 @@ export {
   popUpImageClose,
   validationConfig,
   initialCards,
-  overlayList
+  overlayList,
+  popUpAvatarUpdate,
+  popUpOpenAvatarUpdate,
+  popUpCloseAvatarUpdate,
+  formAvatarUpdate,
+  popUpConfirm,
+  popUpCloseConfirm,
+  formConfirm,
 }

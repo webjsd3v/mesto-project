@@ -1,6 +1,5 @@
 import '../pages/index.css';
 import {
-  profile,
   profileName,
   profileSubtitle,
   popUpEditProfile,
@@ -10,7 +9,6 @@ import {
   nameInput,
   jobInput,
   elements,
-  templateElement,
   popUpAddElement,
   popUpOpenAdd,
   popUpCloseAdd,
@@ -18,14 +16,18 @@ import {
   nameInputAdd,
   urlInputAdd,
   popUpImageElement,
-  popUpImage,
-  popUpImageCaption,
   popUpImageClose,
-  validationConfig
-} from '../components/utils';
-import { addElement, renderCards } from '../components/card';
-import {openPopUp, closePopUp} from '../components/modal';
-import {enableValidation} from '../components/validate'
+  validationConfig,
+  popUpAvatarUpdate,
+  popUpOpenAvatarUpdate,
+  popUpCloseAvatarUpdate,
+  popUpCloseConfirm,
+  popUpConfirm,
+  formAvatarUpdate, formConfirm
+} from './utils';
+import { addElement, renderCards } from './card';
+import {openPopUp, closePopUp} from './modal';
+import {enableValidation} from './validate'
 
 popUpOpenEdit.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
@@ -64,6 +66,29 @@ popUpCloseAdd.addEventListener("click", () => {
   closePopUp(popUpAddElement);
 })
 
+popUpOpenAvatarUpdate.addEventListener("click",() => {
+  openPopUp(popUpAvatarUpdate);
+})
+
+popUpCloseAvatarUpdate.addEventListener("click", () => {
+  formAvatarUpdate.reset();
+  closePopUp(popUpAvatarUpdate);
+})
+
+formAvatarUpdate.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  formAvatarUpdate.reset();
+  closePopUp(popUpAvatarUpdate);
+})
+
+popUpCloseConfirm.addEventListener('click', () => {
+  closePopUp(popUpConfirm)
+})
+
 renderCards()
 
 enableValidation(validationConfig);
+
+
+// :TODO
+// :FIXME

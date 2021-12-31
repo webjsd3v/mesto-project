@@ -1,10 +1,9 @@
 .element__button-like{
   border: 0;
   min-width: 22px;
-  max-height: 19px;
+  height: 19px;
   background: url("../../../images/elements/button/like.svg") no-repeat;
   cursor: pointer;
-  margin: 5px 5px 0 0;
 }
 
 .element__button-like:hover {
