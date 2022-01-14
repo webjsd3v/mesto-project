@@ -13,21 +13,20 @@ import {
   popUpOpenAdd,
   popUpCloseAdd,
   formAdd,
-  nameInputAdd,
-  urlInputAdd,
   popUpImageElement,
   popUpImageClose,
   validationConfig,
   popUpAvatarUpdate,
   popUpOpenAvatarUpdate,
   popUpCloseAvatarUpdate,
-  popUpCloseConfirm,
-  popUpConfirm,
-  formAvatarUpdate, formConfirm
-} from './utils';
+  formAvatarUpdate,
+  profileAvatarImage
+} from './constants';
 import { addElement, renderCards } from './card';
 import {openPopUp, closePopUp} from './modal';
 import {enableValidation} from './validate'
+import {handleSubmitAvatar, handleSubmitElement, handleSubmitProfile} from "./utils";
+import { getElements, getUserProfile} from "./api";
 
 popUpOpenEdit.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
@@ -35,14 +34,8 @@ popUpOpenEdit.addEventListener("click", () => {
   openPopUp(popUpEditProfile);
 })
 
-popUpCloseEdit.addEventListener("click", () => {
-  closePopUp(popUpEditProfile);
-})
 
-formEdit.addEventListener("submit",(evt)=>{
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
+popUpCloseEdit.addEventListener("click", () => {
   closePopUp(popUpEditProfile);
 })
 
@@ -50,19 +43,11 @@ popUpImageClose.addEventListener("click", () => {
   closePopUp(popUpImageElement);
 })
 
-formAdd.addEventListener("submit",(evt)=>{
-  evt.preventDefault();
-  elements.prepend(addElement(nameInputAdd.value, urlInputAdd.value))
-  formAdd.reset();
-  closePopUp(popUpAddElement);
-})
-
 popUpOpenAdd.addEventListener("click",() => {
   openPopUp(popUpAddElement);
 })
 
 popUpCloseAdd.addEventListener("click", () => {
-  formAdd.reset();
   closePopUp(popUpAddElement);
 })
 
@@ -71,24 +56,33 @@ popUpOpenAvatarUpdate.addEventListener("click",() => {
 })
 
 popUpCloseAvatarUpdate.addEventListener("click", () => {
-  formAvatarUpdate.reset();
   closePopUp(popUpAvatarUpdate);
+})
+
+formEdit.addEventListener("submit",(evt)=>{
+  handleSubmitProfile(evt)
+})
+
+formAdd.addEventListener("submit",(evt)=>{
+  handleSubmitElement(evt);
 })
 
 formAvatarUpdate.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  formAvatarUpdate.reset();
-  closePopUp(popUpAvatarUpdate);
+  handleSubmitAvatar(evt)
 })
 
-popUpCloseConfirm.addEventListener('click', () => {
-  closePopUp(popUpConfirm)
-})
+export let idUser
 
-renderCards()
+Promise.all([ getUserProfile() , getElements()])
+  .then(([resData, resElement]) => {
+    idUser = resData._id;
+    profileName.textContent = resData.name;
+    profileSubtitle.textContent = resData.about;
+    nameInput.value = resData.name;
+    jobInput.value = resData.about;
+    profileAvatarImage.src = resData.avatar;
+    resElement.forEach(element => renderCards(elements , addElement(element)));
+  })
+  .catch(err =>  console.log(err))
 
 enableValidation(validationConfig);
-
-
-// :TODO
-// :FIXME

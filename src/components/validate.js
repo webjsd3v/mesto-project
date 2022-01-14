@@ -20,7 +20,7 @@ const checkInputValidity = (formElement, inputElement, objectElement) => {
   }
 };
 
-function inactiveButton(buttonElement, objectElement){
+export function inactiveButton(buttonElement, objectElement){
   buttonElement.setAttribute('disabled', true);
   buttonElement.classList.add(objectElement.inactiveButtonClass);
 }
@@ -58,8 +58,6 @@ function enableValidation(objectElement){
   formList.forEach(formElement => {
     formElement.addEventListener('submit', evt => {
       evt.preventDefault();
-      const buttonElement = formElement.querySelector(objectElement.submitButtonSelector);
-      inactiveButton(buttonElement, objectElement);
     })
     setEventListeners(formElement, objectElement);
   });

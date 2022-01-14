@@ -1,34 +1,69 @@
-import {templateElement, initialCards, elements} from './utils';
+import {templateElement} from './constants';
+import {idUser} from "./index";
 import {openImage} from './modal'
+import {addLikeElement, delApiElement, removeLikeElement} from "./api";
 
-function addElement(name, link){
-  const elementItem = templateElement.querySelector(".element").cloneNode(true);
-  const imageElement = elementItem.querySelector(".element__image");
-  const titleElement = elementItem.querySelector(".element__title");
-
-  titleElement.textContent = name;
-  imageElement.src = link;
-  imageElement.alt = `Фотография ${name}`;
-
+function addElement(elements){
+  const elementItem = templateElement.querySelector('.element').cloneNode(true);
+  const imageElement = elementItem.querySelector('.element__image');
+  const titleElement = elementItem.querySelector('.element__title');
+  const numberLike = elementItem.querySelector('.element__count');
+  const buttonLike = elementItem.querySelector('.element__button-like');
   const buttonTrash = elementItem.querySelector(".element__button-trash");
-  buttonTrash.addEventListener("click",() => {
-    elementItem.remove()
-  })
 
-  const buttonLike = elementItem.querySelector(".element__button-like");
+  titleElement.textContent = elements.name;
+  imageElement.src = elements.link;
+  imageElement.alt = `Фотография ${elements.name}`;
+  numberLike.textContent = elements.likes.length;
+  buttonTrash.elements = elements._id;
+
+  if (idUser !== elements.owner._id){
+    buttonTrash.remove()
+  }else{
+    buttonTrash.addEventListener("click",() => {
+      delApiElement(buttonTrash.elements)
+        .then(() => elementItem.remove())
+        .catch(err => console.log(err))
+    })
+  }
+
+  if(elements.likes.find(like => like._id === idUser)){
+    buttonLike.classList.add("element__button-like_active");
+  }else {
+    buttonLike.classList.remove("element__button-like_active");
+  }
+
   buttonLike.addEventListener("click", () => {
-    buttonLike.classList.toggle("element__button-like_active");
+    if(elements.likes.find(like => like._id === idUser)){
+      removeLikeElement(elements._id)
+        .then(elementData => {
+          numberLike.textContent = elementData.likes.length;
+          elements.likes = elementData.likes;
+        })
+        .catch(err => console.log(err))
+        .finally(()=>{
+          buttonLike.classList.remove("element__button-like_active");
+        })
+    }else {
+      addLikeElement(elements._id)
+        .then(elementData => {
+          numberLike.textContent = elementData.likes.length;
+          elements.likes = elementData.likes;
+        })
+        .catch(err => console.log(err))
+        .finally(()=>{
+          buttonLike.classList.add("element__button-like_active");
+        })
+    }
   })
 
-  imageElement.addEventListener("click", () => openImage(name,link));
+  imageElement.addEventListener("click", () => openImage(elements.name,elements.link));
 
   return elementItem;
 }
 
-function renderCards(){
-  initialCards.forEach((arg)=>{
-    elements.append(addElement(arg.name, arg.link))
-  })
+function renderCards(section, element){
+  section.prepend(element)
 }
 
 export {
