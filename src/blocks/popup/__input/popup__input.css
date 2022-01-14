@@ -8,6 +8,7 @@
   font-size: 14px;
   line-height: 17px;
   max-height: 14px;
+  outline: none;
 }
 
 .popup__input:not(:first-child){

@@ -1,6 +1,6 @@
 .popup__fieldset{
   border: 0;
   padding: 0;
-  margin: 0;
   max-height: 101px;
+  margin: 0 0 48px 0;
 }

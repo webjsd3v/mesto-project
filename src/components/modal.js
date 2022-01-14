@@ -3,7 +3,7 @@ import {
   popUpImage,
   popUpImageCaption,
   overlayList
-} from '../components/utils';
+} from './constants';
 
 
 overlayList.forEach(event => {
