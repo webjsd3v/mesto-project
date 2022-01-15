@@ -39,21 +39,17 @@ function addElement(elements){
         .then(elementData => {
           numberLike.textContent = elementData.likes.length;
           elements.likes = elementData.likes;
-        })
-        .catch(err => console.log(err))
-        .finally(()=>{
           buttonLike.classList.remove("element__button-like_active");
         })
+        .catch(err => console.log(err))
     }else {
       addLikeElement(elements._id)
         .then(elementData => {
           numberLike.textContent = elementData.likes.length;
           elements.likes = elementData.likes;
-        })
-        .catch(err => console.log(err))
-        .finally(()=>{
           buttonLike.classList.add("element__button-like_active");
         })
+        .catch(err => console.log(err))
     }
   })
 

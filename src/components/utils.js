@@ -43,11 +43,13 @@ export function handleSubmitProfile(event){
   event.preventDefault();
   editProfileButton.textContent = 'Сохранение...'
   addUserProfileInfo(nameInput.value, jobInput.value)
-    .then(req => updateProfile(req))
+    .then(req =>{
+      updateProfile(req)
+      inactiveButton(editProfileButton, objectElement)
+    })
     .catch(err => console.log(err))
     .finally(() => {
       editProfileButton.textContent = 'Сохранить'
-      inactiveButton(editProfileButton, objectElement)
     })
 }
 
@@ -55,11 +57,13 @@ export function handleSubmitAvatar(event){
   event.preventDefault();
   avatarUpdateButton.textContent = 'Сохранение...'
   addUserProfileAvatar(avatarUpdateInput.value)
-    .then(resData => updateAvatar(resData))
+    .then(resData =>{
+      updateAvatar(resData);
+      inactiveButton(avatarUpdateButton, objectElement)
+    })
     .catch(err => console.log(err))
     .finally(() => {
       avatarUpdateButton.textContent = 'Сохранить'
-      inactiveButton(avatarUpdateButton, objectElement)
     })
 }
 
@@ -67,11 +71,13 @@ export function handleSubmitElement(event){
   event.preventDefault();
   addElementButton.textContent = 'Сохранение...'
   addApiElement(nameInputAdd.value, urlInputAdd.value)
-    .then(res => addCard(res))
+    .then(res => {
+      addCard(res);
+      inactiveButton(addElementButton, objectElement);
+    })
     .catch(err => console.log(err))
     .finally(() => {
       addElementButton.textContent = 'Сохранить'
-      inactiveButton(addElementButton, objectElement)
     })
 }
 
