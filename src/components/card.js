@@ -1,4 +1,4 @@
-import {templateElement} from './constants';
+import {templateElement} from '../utils/constants';
 import {idUser} from "./index";
 import {openImage} from './modal'
 import {addLikeElement, delApiElement, removeLikeElement} from "./api";
@@ -62,8 +62,13 @@ function addElement(elements){
   return elementItem;
 }
 
-function renderCards(section, element){
-  section.prepend(element)
+function renderCards(section, element, method){
+  if (method === 'POST'){
+    section.prepend(element)
+  }else {
+    section.append(element)
+  }
+
 }
 
 export {

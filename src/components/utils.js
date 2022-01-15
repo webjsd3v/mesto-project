@@ -16,7 +16,7 @@ import {
   nameInputAdd,
   urlInputAdd,
   addElementButton, formAdd, popUpAddElement
-} from "./constants";
+} from "../utils/constants";
 import {closePopUp} from "./modal";
 import {inactiveButton} from "./validate";
 import {addElement, renderCards} from "./card";
@@ -34,7 +34,7 @@ function updateAvatar(res){
 }
 
 function addCard(res) {
-  renderCards(elements , addElement(res))
+  renderCards(elements , addElement(res), 'POST')
   formAdd.reset()
   closePopUp(popUpAddElement)
 }

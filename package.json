@@ -1,4 +1,5 @@
 {
+  "homepage": "https://webjsd3v.github.io/mesto-project/",
   "name": "mesto-project",
   "version": "1.0.0",
   "description": "Цель проекта «Место» предоставить пользователю возможность создать мини-блог с картинками.",
@@ -37,6 +38,5 @@
   },
   "bugs": {
     "url": "https://github.com/webjsd3v/mesto-project/issues"
-  },
-  "homepage": "https://webjsd3v.github.io/mesto-project/"
+  }
 }

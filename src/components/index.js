@@ -21,7 +21,7 @@ import {
   popUpCloseAvatarUpdate,
   formAvatarUpdate,
   profileAvatarImage
-} from './constants';
+} from '../utils/constants';
 import { addElement, renderCards } from './card';
 import {openPopUp, closePopUp} from './modal';
 import {enableValidation} from './validate'
@@ -81,7 +81,7 @@ Promise.all([ getUserProfile() , getElements()])
     nameInput.value = resData.name;
     jobInput.value = resData.about;
     profileAvatarImage.src = resData.avatar;
-    resElement.forEach(element => renderCards(elements , addElement(element)));
+    resElement.forEach(element => renderCards(elements , addElement(element), 'GET'));
   })
   .catch(err =>  console.log(err))
 

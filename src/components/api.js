@@ -1,4 +1,4 @@
-import {apiConfigOptions} from "./constants";
+import {apiConfigOptions} from "../utils/constants";
 
 function checkApiError(res){
   if (res.ok){
