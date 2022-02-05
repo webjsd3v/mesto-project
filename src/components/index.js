@@ -26,7 +26,10 @@ import { addElement, renderCards } from './card';
 import {openPopUp, closePopUp} from './modal';
 import {enableValidation} from './validate'
 import {handleSubmitAvatar, handleSubmitElement, handleSubmitProfile} from "./utils";
-import { getElements, getUserProfile} from "./api";
+import Api from "./Api";
+import {apiConfigOptions} from "../utils/constants";
+
+const Api = new Api(apiConfigOptions)
 
 popUpOpenEdit.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
@@ -73,7 +76,7 @@ formAvatarUpdate.addEventListener("submit", (evt) => {
 
 export let idUser
 
-Promise.all([ getUserProfile() , getElements()])
+Promise.all([ Api.getUserProfile() , Api.getElements()])
   .then(([resData, resElement]) => {
     idUser = resData._id;
     profileName.textContent = resData.name;
