@@ -22,7 +22,7 @@ import {
   formAvatarUpdate,
   profileAvatarImage
 } from '../utils/constants';
-import { addElement, renderCards } from './card';
+import { addElement, renderCards } from './Card';
 import {openPopUp, closePopUp} from './modal';
 import {enableValidation} from './validate'
 import {handleSubmitAvatar, handleSubmitElement, handleSubmitProfile} from "./utils";
