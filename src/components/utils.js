@@ -18,7 +18,7 @@ import {
   addElementButton, formAdd, popUpAddElement
 } from "../utils/constants";
 import {closePopUp} from "./modal";
-import {inactiveButton} from "./validate";
+import {inactiveButton} from "./FormValidator";
 import {addElement, renderCards} from "./Card";
 
 function updateProfile(res){

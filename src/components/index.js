@@ -24,7 +24,7 @@ import {
 } from '../utils/constants';
 import { addElement, renderCards } from './Card';
 import {openPopUp, closePopUp} from './modal';
-import {enableValidation} from './validate'
+import {enableValidation} from './FormValidator'
 import {handleSubmitAvatar, handleSubmitElement, handleSubmitProfile} from "./utils";
 import Api from "./Api";
 
