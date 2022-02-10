@@ -1,7 +1,7 @@
 import {templateElement} from '../utils/constants';
 import {idUser} from "./index";
 import {openImage} from './modal'
-import {addLikeElement, delApiElement, removeLikeElement} from "./api";
+import {addLikeElement, delApiElement, removeLikeElement} from "./Api";
 
 function addElement(elements){
   const elementItem = templateElement.querySelector('.element').cloneNode(true);

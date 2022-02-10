@@ -1,4 +1,4 @@
-import {addApiElement, addUserProfileAvatar, addUserProfileInfo} from "./api";
+import {addApiElement, addUserProfileAvatar, addUserProfileInfo} from "./Api";
 import {
   avatarUpdateButton,
   profileAvatarImage,
