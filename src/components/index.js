@@ -26,7 +26,7 @@ import { addElement, renderCards } from './Card';
 import {openPopUp, closePopUp} from './modal';
 import {enableValidation} from './validate'
 import {handleSubmitAvatar, handleSubmitElement, handleSubmitProfile} from "./utils";
-import { getElements, getUserProfile} from "./api";
+import Api from "./Api";
 
 popUpOpenEdit.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
