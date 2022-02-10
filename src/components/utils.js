@@ -19,7 +19,7 @@ import {
 } from "../utils/constants";
 import {closePopUp} from "./modal";
 import {inactiveButton} from "./validate";
-import {addElement, renderCards} from "./card";
+import {addElement, renderCards} from "./Card";
 
 function updateProfile(res){
   profileName.textContent = res.name;
