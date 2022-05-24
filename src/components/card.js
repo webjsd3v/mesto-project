@@ -1,7 +1,10 @@
 import {templateElement} from '../utils/constants';
 import {idUser} from "./index";
 import {openImage} from './modal'
-import {addLikeElement, delApiElement, removeLikeElement} from "./api";
+
+import  Api from "./Api";
+import {apiConfigOptions} from "../utils/constants";
+const api = new Api(apiConfigOptions);
 
 function addElement(elements){
   const elementItem = templateElement.querySelector('.element').cloneNode(true);
@@ -21,7 +24,7 @@ function addElement(elements){
     buttonTrash.remove()
   }else{
     buttonTrash.addEventListener("click",() => {
-      delApiElement(buttonTrash.elements)
+      api.delApiElement(buttonTrash.elements)
         .then(() => elementItem.remove())
         .catch(err => console.log(err))
     })
@@ -35,7 +38,7 @@ function addElement(elements){
 
   buttonLike.addEventListener("click", () => {
     if(elements.likes.find(like => like._id === idUser)){
-      removeLikeElement(elements._id)
+      api.removeLikeElement(elements._id)
         .then(elementData => {
           numberLike.textContent = elementData.likes.length;
           elements.likes = elementData.likes;
@@ -43,7 +46,7 @@ function addElement(elements){
         })
         .catch(err => console.log(err))
     }else {
-      addLikeElement(elements._id)
+      api.addLikeElement(elements._id)
         .then(elementData => {
           numberLike.textContent = elementData.likes.length;
           elements.likes = elementData.likes;

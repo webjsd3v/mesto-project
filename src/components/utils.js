@@ -1,4 +1,3 @@
-import {addApiElement, addUserProfileAvatar, addUserProfileInfo} from "./api";
 import {
   avatarUpdateButton,
   profileAvatarImage,
@@ -21,6 +20,10 @@ import {closePopUp} from "./modal";
 import {inactiveButton} from "./validate";
 import {addElement, renderCards} from "./card";
 
+import  Api from "./Api";
+import {apiConfigOptions} from "../utils/constants";
+const api = new Api(apiConfigOptions);
+
 function updateProfile(res){
   profileName.textContent = res.name;
   profileSubtitle.textContent = res.about;
@@ -42,7 +45,7 @@ function addCard(res) {
 export function handleSubmitProfile(event){
   event.preventDefault();
   editProfileButton.textContent = 'Сохранение...'
-  addUserProfileInfo(nameInput.value, jobInput.value)
+  api.addUserProfileInfo(nameInput.value, jobInput.value)
     .then(req =>{
       updateProfile(req)
       inactiveButton(editProfileButton, objectElement)
@@ -56,7 +59,7 @@ export function handleSubmitProfile(event){
 export function handleSubmitAvatar(event){
   event.preventDefault();
   avatarUpdateButton.textContent = 'Сохранение...'
-  addUserProfileAvatar(avatarUpdateInput.value)
+  api.addUserProfileAvatar(avatarUpdateInput.value)
     .then(resData =>{
       updateAvatar(resData);
       inactiveButton(avatarUpdateButton, objectElement)
@@ -70,7 +73,7 @@ export function handleSubmitAvatar(event){
 export function handleSubmitElement(event){
   event.preventDefault();
   addElementButton.textContent = 'Сохранение...'
-  addApiElement(nameInputAdd.value, urlInputAdd.value)
+  api.addApiElement(nameInputAdd.value, urlInputAdd.value)
     .then(res => {
       addCard(res);
       inactiveButton(addElementButton, objectElement);
