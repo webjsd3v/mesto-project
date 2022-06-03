@@ -17,15 +17,15 @@ class Popup {
   }
 
   close() {
-    this._elementPopup.classList.remove("popup_closed");
+    this._elementPopup.classList.remove("popup_opened");
     document.removeEventListener("keydown", this._handleEsc);
   }
 
   setEventListeners() {
-    this._popup.addEventListener("mousedown", (evt) => {
+    this._elementPopup.addEventListener("click", (evt) => {
       if (
         evt.target.classList.contains("popup_opened") ||
-        evt.target.classList.contains("popup__closed")
+        evt.target.classList.contains("popup__close-btn")
       ) {
         this.close();
       }

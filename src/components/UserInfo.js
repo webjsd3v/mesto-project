@@ -1,8 +1,8 @@
 class UserInfo{
-  constructor({ nameInput, aboutInput, avatarLink }) {
-    this._nameInput = document.querySelector(nameInput);
-    this._aboutInput = document.querySelector(aboutInput);
-    this._avatarLink = document.querySelector(avatarLink);
+  constructor(profileName, profileSubtitle, profileAvatarImage) {
+    this._nameInput = document.querySelector(profileName);
+    this._aboutInput = document.querySelector(profileSubtitle);
+    this._avatarLink = document.querySelector(profileAvatarImage);
   }
   getUserInfo() {
     return {
@@ -13,9 +13,9 @@ class UserInfo{
   }
 
   setUserInfo(data) {
-    this._nameInput.textContent = data.name;
-    this._aboutInput.textContent = data.about;
-    this._avatarLink.src = data.avatar;
+    if(data.name) this._nameInput.textContent = data.name;
+    if(data.about) this._aboutInput.textContent = data.about;
+    if(data.avatar) this._avatarLink.src = data.avatar;
   }
 }
 
