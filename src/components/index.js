@@ -1,4 +1,4 @@
-import './index.css';
+import '../pages/index.css';
 import {
   validationConfig,
   formSelectors,
@@ -9,13 +9,13 @@ import {
   nameInput,
   jobInput
 } from '../utils/constants';
-import Card from '../components/Card';
-import Api from "../components/Api";
-import PopupWithImage from "../components/PopupWithImage";
-import FormValidator from "../components/FormValidator";
-import UserInfo from "../components/UserInfo";
-import PopupWithForm from "../components/PopupWithForm";
-import Section from "../components/Section"
+import Card from './Card';
+import Api from "./Api";
+import PopupWithImage from "./PopupWithImage";
+import FormValidator from "./FormValidator";
+import UserInfo from "./UserInfo";
+import PopupWithForm from "./PopupWithForm";
+import Section from "./Section"
 
 const api = new Api(apiConfigOptions);
 
