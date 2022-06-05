@@ -83,7 +83,7 @@ const handleSubmitElement = new PopupWithForm({
 });
 handleSubmitElement.setEventListeners();
 document.querySelector(".profile__add-button").addEventListener("click",() => {
-  elementValidate.inactiveButton();
+  elementValidate.resetValidation();
   handleSubmitElement.open()
 });
 
@@ -109,7 +109,7 @@ document.querySelector(".profile__edit-button").addEventListener('click', () => 
   const profile = profileInfo.getUserInfo();
   nameInput.value = profile.name;
   jobInput.value = profile.about;
-  profileValidate.inactiveButton();
+  profileValidate.resetValidation();
   handleSubmitProfile.open();
 });
 
@@ -131,7 +131,7 @@ const handleSubmitAvatar = new PopupWithForm({
 });
 handleSubmitAvatar.setEventListeners();
 document.querySelector(".profile__avatar-update").addEventListener("click",() => {
-  avatarValidate.inactiveButton()
+  avatarValidate.resetValidation()
   handleSubmitAvatar.open()
 });
 
