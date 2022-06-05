@@ -21,7 +21,7 @@ class Popup {
   }
 
   setEventListeners() {
-    this._elementPopup.addEventListener("click", (evt) => {
+    this._elementPopup.addEventListener("mousedown", (evt) => {
       if (
         evt.target.classList.contains("popup_opened") ||
         evt.target.classList.contains("popup__close-btn")
