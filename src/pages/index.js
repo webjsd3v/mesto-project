@@ -7,15 +7,17 @@ import {
   profileSelector,
   apiConfigOptions,
   nameInput,
-  jobInput
+  jobInput,
+  confirmDeleteSelector
 } from '../utils/constants';
 import Card from '../components/Card';
 import Api from "../components/Api";
-import PopupWithImage from "../components/PopupWithImage";
 import FormValidator from "../components/FormValidator";
 import UserInfo from "../components/UserInfo";
-import PopupWithForm from "../components/PopupWithForm";
 import Section from "../components/Section"
+import PopupWithImage from "../components/PopupWithImage";
+import PopupWithConfirmDelete from "../components/PopupWithConfirmDelete";
+import PopupWithForm from "../components/PopupWithForm";
 
 const api = new Api(apiConfigOptions);
 
@@ -37,6 +39,9 @@ avatarValidate.enableValidation();
 const imagePopup =  new PopupWithImage(imageSelectors.popUpImageElement);
 imagePopup.setEventListeners();
 
+const popupConfirmDelete = new PopupWithConfirmDelete(confirmDeleteSelector.popupConfirmDelete);
+popupConfirmDelete.setEventListeners()
+
 function addElement(data) {
   const element = new Card(
     elementsConfig.templateElement,
@@ -55,9 +60,15 @@ function addElement(data) {
         }
       },
       handleDeleteClick: () => {
-        api.delApiElement(element.idElement())
-          .then(() => element.delElement())
-          .catch(err => console.log(`Ошибка: ${err}`))
+        popupConfirmDelete.setFormConfirmDeleteSubmit(() => {
+          api.delApiElement(element.idElement())
+            .then(() => {
+              element.delElement()
+              popupConfirmDelete.close()
+            })
+            .catch(err => console.log(`Ошибка: ${err}`))
+        })
+        popupConfirmDelete.open()
       }
     }
   )

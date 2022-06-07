@@ -28,6 +28,10 @@ export const validationConfig = {
   errorClass: 'popup__error_visible'
 }
 
+export const confirmDeleteSelector = {
+  popupConfirmDelete : '.popup_type_confirm-delete'
+}
+
 export const apiConfigOptions = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-5',
   headers: {
