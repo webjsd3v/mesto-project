@@ -15,3 +15,26 @@
   opacity: 1;
 }
 
+@media screen and (max-width: 1024px){
+  .profile__avatar-update {
+    left: 380px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .profile__avatar-update {
+    left: 324px;
+  }
+}
+
+@media screen and (max-width: 425px){
+  .profile__avatar-update {
+    left: 153px;
+  }
+}
+
+@media screen and (max-width: 375px){
+  .profile__avatar-update {
+    left: 128px;
+  }
+}
