@@ -1,73 +1,72 @@
-import {templateElement} from '../utils/constants';
-import {idUser} from "./index";
-import {openImage} from './modal'
-import {addLikeElement, delApiElement, removeLikeElement} from "./api";
-
-function addElement(elements){
-  const elementItem = templateElement.querySelector('.element').cloneNode(true);
-  const imageElement = elementItem.querySelector('.element__image');
-  const titleElement = elementItem.querySelector('.element__title');
-  const numberLike = elementItem.querySelector('.element__count');
-  const buttonLike = elementItem.querySelector('.element__button-like');
-  const buttonTrash = elementItem.querySelector(".element__button-trash");
-
-  titleElement.textContent = elements.name;
-  imageElement.src = elements.link;
-  imageElement.alt = `Фотография ${elements.name}`;
-  numberLike.textContent = elements.likes.length;
-  buttonTrash.elements = elements._id;
-
-  if (idUser !== elements.owner._id){
-    buttonTrash.remove()
-  }else{
-    buttonTrash.addEventListener("click",() => {
-      delApiElement(buttonTrash.elements)
-        .then(() => elementItem.remove())
-        .catch(err => console.log(err))
-    })
+class Card{
+  constructor(templateElement,{ data, handleCardClick, handleLikeClick, handleDeleteClick }) {
+    this._templateElement = templateElement;
+    this._name = data.name;
+    this._link = data.link;
+    this._likes = data.likes;
+    this._idElement = data._id;
+    this._idOwner = data.owner._id;
+    this._idUser = data.idUser;
+    this._handleCardClick = handleCardClick;
+    this._handleLikeToggle = handleLikeClick;
+    this._handleDeleteCard = handleDeleteClick;
   }
 
-  if(elements.likes.find(like => like._id === idUser)){
-    buttonLike.classList.add("element__button-like_active");
-  }else {
-    buttonLike.classList.remove("element__button-like_active");
+  _getTemplate(){
+    return document
+      .querySelector(this._templateElement)
+      .content
+      .querySelector('.element')
+      .cloneNode(true)
   }
 
-  buttonLike.addEventListener("click", () => {
-    if(elements.likes.find(like => like._id === idUser)){
-      removeLikeElement(elements._id)
-        .then(elementData => {
-          numberLike.textContent = elementData.likes.length;
-          elements.likes = elementData.likes;
-          buttonLike.classList.remove("element__button-like_active");
-        })
-        .catch(err => console.log(err))
-    }else {
-      addLikeElement(elements._id)
-        .then(elementData => {
-          numberLike.textContent = elementData.likes.length;
-          elements.likes = elementData.likes;
-          buttonLike.classList.add("element__button-like_active");
-        })
-        .catch(err => console.log(err))
-    }
-  })
+  _updateLike(){
+    this._numberLike.textContent = this._likes.length;
+    this._buttonLike.classList.toggle('element__button-like_active', this.like())
+  }
 
-  imageElement.addEventListener("click", () => openImage(elements.name,elements.link));
+  _setEventListeners() {
+    this._buttonTrash.addEventListener('click', () => this._handleDeleteCard());
+    this._buttonLike.addEventListener('click', () => this._handleLikeToggle());
+    this._imageElement.addEventListener('click', () => this._handleCardClick());
+  }
 
-  return elementItem;
-}
+  like() {
+    return Boolean(this._likes.find(element => element._id === this._idUser));
+  }
 
-function renderCards(section, element, method){
-  if (method === 'POST'){
-    section.prepend(element)
-  }else {
-    section.append(element)
+  setLike(data) {
+    this._likes = data.likes;
+    this._updateLike();
+  }
+
+  idElement() {
+    return this._idElement;
+  }
+
+  delElement() {
+    this._elementItem.remove();
+  }
+
+  addElement(){
+    this._elementItem = this._getTemplate()
+    this._imageElement = this._elementItem.querySelector('.element__image');
+    this._titleElement = this._elementItem.querySelector('.element__title');
+    this._numberLike = this._elementItem.querySelector('.element__count');
+    this._buttonLike = this._elementItem.querySelector('.element__button-like');
+    this._buttonTrash = this._elementItem.querySelector(".element__button-trash");
+
+    if(this._idUser !== this._idOwner) this._buttonTrash.remove();
+    const imageElement = this._imageElement;
+    imageElement.src = this._link;
+    imageElement.alt = this._name;
+    this._titleElement.textContent = this._name;
+
+    this._setEventListeners();
+    this._updateLike();
+    return this._elementItem;
   }
 
 }
 
-export {
-  addElement,
-  renderCards
-}
+export default Card;
